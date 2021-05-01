@@ -1,21 +1,31 @@
-const db = require("../database/dbService");
-const dbService = db.dbService;
+const rest = require("./restService");
+const restService = rest.restService;
+const city = require("./cityService");
+const cityService = city.cityService;
 
 
 // service object that will hold the service methods for Weather Forecast
 const forecastService = {};
 
+// urls for Weather REST API
+const weeklyURL = "https://api.openweathermap.org/data/2.5/onecall?units=metric&appid=006a2717118faae82b83b91cc87e5e69&exclude=hourly,minutely&lang=es";
+
 // gets forecast for next week
 forecastService.getWeekForecast =  async function (cityName) {
   return new Promise(async (resolve, reject) => {
     try {
-      // get city from DB
-      const city = await dbService.get(cityName);
+      // get city record
+      //const city = await dbService.getCity(cityName);
+      const city = await cityService.getCity(cityName);
+
+      // add City coordinates to URL
+      const restURL = weeklyURL + "&lat=" + city.lat + "&lon=" + city.lon;
+      console.log("URL: " + restURL);
 
       // get the forecast (Call External Weather API)
-      const forecast = {};
-
-      resolve(forecast);
+      restService.doGet(restURL).then(res => {
+        resolve(res);
+      });
     } catch (err) {
       console.log("Error getting weekly Forecast: " + err);
       reject(err);

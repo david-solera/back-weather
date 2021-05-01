@@ -1,4 +1,5 @@
-const forecastService = require("../business/forecastService");
+const forecast = require("../business/forecastService");
+const forecastService = forecast.forecastService;
 
 function getWeekForecast(req, res, next) {
     // get params (Mocked by the moment -- get from request!!!)
@@ -6,7 +7,7 @@ function getWeekForecast(req, res, next) {
     const city = 'Zaragoza'
 
     // get forecast a whole week
-    forecastService.getWeekForecast(initDate, city).then(function (data) {
+    forecastService.getWeekForecast(city).then(function (data) {
         res.status(200).json({
             status: 'success',
             data: data,
