@@ -37,8 +37,12 @@ function locateCity(req, res, next) {
 }
 
 function addCity(req, res, next) {
+    // get params
+    const cityName = req.body.name;
+    const country = req.body.country;
+
     // add city
-    cityService.addCity(params).then(function (data) {
+    cityService.addCity(cityName, country).then(function (data) {
         res.status(200).json({
             status: 'success',
             data: data,

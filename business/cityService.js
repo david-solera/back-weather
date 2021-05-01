@@ -58,4 +58,26 @@ cityService.locateCity =  async function (cityName, countryCode) {
   });
 }
 
+// Add a City to the Daatabase
+cityService.addCity =  async function (cityName, countryCode) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // first geolocate to get the coordinates
+      const location = await cityService.locateCity(cityName, countryCode);
+
+      // get coordinates from result
+      const parsedLocation = JSON.parse(location.body);
+      const lat = parsedLocation[0].lat;
+      const lon = parsedLocation[0].lon;
+
+      // add to the DB
+      const city = await dbService.addCity(cityName, countryCode, lat, lon);
+      resolve(city);
+    } catch (err) {
+      console.log("Error geolocating city: " + err);
+      reject(err);
+    }
+  });
+}
+
 module.exports = { cityService };

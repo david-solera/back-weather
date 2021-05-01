@@ -29,6 +29,15 @@ dbService.getCity = async function (cityName) {
   });
 };
 
+// add a city record
+dbService.addCity = async function (cityName, countryCode, lat, lon) {
+  return new Promise((resolve, reject) => {
+    dbEntities.City.create({name:cityName,countrycode:countryCode,lat:lat,lon:lon}).then((city) => {
+      resolve(city);
+    });
+  });
+};
+
 /*
 // METRIC
 // get master Metrics

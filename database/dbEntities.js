@@ -6,7 +6,7 @@ const weatherDB = dbConfig.weatherDB;
 const Country = weatherDB.define(
   "country",
   {
-    countryid: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+    countrycode: { type: DataTypes.STRING, primaryKey: true, autoIncrement: true },
     countrycode: { type: DataTypes.STRING, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false }
   },
@@ -24,7 +24,7 @@ const City = weatherDB.define(
     name: { type: DataTypes.STRING, allowNull: false },
     lat: { type: DataTypes.STRING},
     lon: { type: DataTypes.STRING},
-    countryid: { type: Sequelize.INTEGER, allowNull: false }
+    countrycode: { type: DataTypes.STRING, allowNull: false }
   },
   {
     timestamps: false,
@@ -33,8 +33,8 @@ const City = weatherDB.define(
 );
 
 // Constraints
-Country.hasMany(City,{foreignKey: {name: 'countryid'}});
-City.belongsTo(Country, {foreignKey: 'countryid'})
+Country.hasMany(City,{foreignKey: {name: 'countrycode'}});
+City.belongsTo(Country, {foreignKey: 'countrycode'})
 
 module.exports = {
   Country,
