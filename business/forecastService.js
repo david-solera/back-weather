@@ -15,8 +15,9 @@ forecastService.getWeekForecast =  async function (cityName) {
   return new Promise(async (resolve, reject) => {
     try {
       // get city record
-      //const city = await dbService.getCity(cityName);
       const city = await cityService.getCity(cityName);
+      console.log('CIUDAD');
+      console.log(city);
 
       // add City coordinates to URL
       const restURL = weeklyURL + "&lat=" + city.lat + "&lon=" + city.lon;

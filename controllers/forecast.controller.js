@@ -3,8 +3,7 @@ const forecastService = forecast.forecastService;
 
 function getWeekForecast(req, res, next) {
     // get params (Mocked by the moment -- get from request!!!)
-    const initDate = '01/05/2021';
-    const city = 'Zaragoza'
+    const city = req.body.city;    
 
     // get forecast a whole week
     forecastService.getWeekForecast(city).then(function (data) {
