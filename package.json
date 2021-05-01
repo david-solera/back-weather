@@ -1,30 +1,44 @@
 {
-  "name": "facturador-od-excel-back",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "bin": "app.js",
+  "name": "back-weather",
+  "version": "1.4.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "set BD_URL=localhost && set BD_PORT=5432 && set BD_NAME=local && set SCHEMA=acciona_facturacion && set BD_USERNAME=postgres && set BD_PASSWORD=GXMhV8hp && node app.js",
-    "devLinux": "BD_URL=localhost BD_PORT=5432 BD_NAME=local SCHEMA=acciona_facturacion BD_USERNAME=accionafacturaciondev BD_PASSWORD=GXMhV8hp node app.js"
+    "start": "node -r dotenv/config app.js dotenv_config_path=./.env",
+    "start:local": "nodemon -r dotenv/config app.js dotenv_config_path=./.env"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.dxc.com:Acciona/Facturador-OD-Excel-Back.git"
-  },
-  "author": "German Arcos (garcos@dxc.com)",
-  "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.7.2",
-    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
     "connect-busboy": "0.0.2",
-    "connect-pg-simple": "^6.1.0",
-    "cookie-parser": "^1.4.4",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "exceljs": "^4.1.0",
+    "express": "~4.16.1",
+    "express-session": "^1.17.1",
+    "fonts": "0.0.2",
+    "http-errors": "~1.6.3",
+    "i18next": "^19.5.1",
+    "i18next-fs-backend": "^1.0.6",
+    "i18next-http-middleware": "^3.0.0",
+    "jquery": "^3.5.1",
+    "jwt-decode": "^2.2.0",
+    "method-override": "^3.0.0",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.21",
+    "morgan": "~1.9.1",
+    "mysql2": "^2.1.0",
+    "node-cron": "^2.0.3",
+    "node-sass-middleware": "0.11.0",
+    "nodemailer": "^6.4.10",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "passport": "^0.4.1",
+    "passport-azure-ad": "^4.2.1",
+    "pg": "^8.6.0",
+    "sequelize": "^6.2.0",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "pg-promise": "^10.3.1",
-    "request": "^2.88.2"
+    "nodemon": "^2.0.4"
   }
 }

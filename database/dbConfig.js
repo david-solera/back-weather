@@ -2,10 +2,16 @@ const Sequelize = require('sequelize');
 const { dbInstance, dbUser, dbPassword, dbHost, dbPort, dbDialect } = require("../config/config");
 
 //DATABASE SETTINGS
-const kpiDB = new Sequelize(dbInstance, dbUser, dbPassword, {
+const weatherDB = new Sequelize(dbInstance, dbUser, dbPassword, {
   host: dbHost,
   port: dbPort,
   dialect: dbDialect,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
   pool: {
     max: 10,
     min: 0,
@@ -15,10 +21,10 @@ const kpiDB = new Sequelize(dbInstance, dbUser, dbPassword, {
   operatorsAliases: false
 });
 
-kpiDB.authenticate().then(() => {
+weatherDB.authenticate().then(() => {
     console.log('Connection has been established successfully.');
   }).catch(err => {
     console.error('Unable to connect to the database:', err);
   });
 
-module.exports = {kpiDB};
+module.exports = {weatherDB};

@@ -1,12 +1,35 @@
 const Sequelize = require("sequelize");
 const { Op } = require("sequelize");
-const { kpiDB } = require("./dbConfig");
+const { weatherDB } = require("./dbConfig");
 const dbEntities = require("./dbEntities");
-const moment = require("moment");
 
 // service object that will hold the service methods
 const dbService = {};
 
+// CITY
+// get city List
+dbService.getCities = async function () {
+  return new Promise((resolve, reject) => {
+    dbEntities.City.findAll({ order: [["cityid", "ASC"]] }).then((cityList) => {
+      resolve(cityList);
+    });
+  });
+};
+
+// get single city detail
+dbService.getCity = async function (cityName) {
+  return new Promise((resolve, reject) => {
+    dbEntities.City.findOne({
+      where: {
+        name: cityName
+      }
+    }).then((city) => {
+      resolve(city);
+    });
+  });
+};
+
+/*
 // METRIC
 // get master Metrics
 dbService.getMasterMetrics = async function () {
@@ -872,6 +895,6 @@ dbService.getUsersToMailingDay12 = async function () {
   });
   return(users_day12);
 };
-
+*/
 
 module.exports = { dbService };
