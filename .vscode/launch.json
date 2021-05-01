@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "env": {
+        "dbInstance": "kpi_pre",
+        "dbUser": "kpi_pre@mysqldxclz",
+        "dbPassword": "xjaCB4bBhmO8bC9jcPgZLAZKGKLIkd",
+        "dbHost": "mysqldxclz.mysql.database.azure.com",
+        "dbPort": 3306,
+        "dbDialect": "mysql",
+        "cron": 1,
+        "cron_day1": "0 0,56 9 1,19 * *",
+        "cron_day12": "0 0,4 9,11 12,19 * *"
+      },
+      "program": "${workspaceFolder}/bin/www"
+    }
+  ]
+}

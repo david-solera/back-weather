@@ -1,0 +1,30 @@
+{
+  "name": "facturador-od-excel-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "bin": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "set BD_URL=localhost && set BD_PORT=5432 && set BD_NAME=local && set SCHEMA=acciona_facturacion && set BD_USERNAME=postgres && set BD_PASSWORD=GXMhV8hp && node app.js",
+    "devLinux": "BD_URL=localhost BD_PORT=5432 BD_NAME=local SCHEMA=acciona_facturacion BD_USERNAME=accionafacturaciondev BD_PASSWORD=GXMhV8hp node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.dxc.com:Acciona/Facturador-OD-Excel-Back.git"
+  },
+  "author": "German Arcos (garcos@dxc.com)",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "connect-busboy": "0.0.2",
+    "connect-pg-simple": "^6.1.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "pg-promise": "^10.3.1",
+    "request": "^2.88.2"
+  }
+}
