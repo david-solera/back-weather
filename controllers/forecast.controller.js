@@ -2,8 +2,8 @@ const forecast = require("../business/forecastService");
 const forecastService = forecast.forecastService;
 
 function getWeekForecast(req, res, next) {
-    // get params (Mocked by the moment -- get from request!!!)
-    const city = req.body.city;    
+    // get params
+    const city = req.body.city;
 
     // get forecast a whole week
     forecastService.getWeekForecast(city).then(function (data) {
