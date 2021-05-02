@@ -18,12 +18,11 @@ function getWeekForecast(req, res, next) {
 }
 
 function getDayForecast(req, res, next) {
-    // get params (Mocked by the moment -- get from request!!!)
-    const date = '03/05/2021';
-    const city = 'Zaragoza'
+    // get params
+    const city = req.body.city;
 
     // get forecast a single day
-    forecastService.getDayForecast(date, city).then(function (data) {
+    forecastService.getDayForecast(city).then(function (data) {
         res.status(200).json({
             status: 'success',
             data: data,
