@@ -30,7 +30,7 @@ let allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain);
 
 
-let port = 1234;
+let port = process.env.PORT || 1234;
 
 app.listen(port, () => {
   console.log('Server is up and running on port number ' + port);
