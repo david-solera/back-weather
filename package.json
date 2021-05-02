@@ -3,8 +3,8 @@
   "version": "1.4.0",
   "private": true,
   "scripts": {
-    "start": "node -r dotenv/config app.js dotenv_config_path=./.env",
-    "start:local": "nodemon -r dotenv/config app.js dotenv_config_path=./.env"
+    "start": "node app.js",
+    "start:local": "node -r dotenv/config app.js dotenv_config_path=./.env"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
