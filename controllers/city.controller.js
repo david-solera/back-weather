@@ -36,6 +36,7 @@ function locateCity(req, res, next) {
     })
 }
 
+// add a city to the Database
 function addCity(req, res, next) {
     // get params
     const cityName = req.body.name;
@@ -53,6 +54,7 @@ function addCity(req, res, next) {
     })
 }
 
+// return a list of cities from the database
 function listCities(req, res, next) {
     // add city
     cityService.listCities().then(function (data) {
@@ -66,30 +68,14 @@ function listCities(req, res, next) {
     })
 }
 
+// update a city in the Database
 function updateCity(req, res, next) {
-    // add city
-    cityService.addCity(params).then(function (data) {
-        res.status(200).json({
-            status: 'success',
-            data: data,
-            message: 'City Updated'
-        })
-    }).catch(function (err) {
-        return next(err);
-    })
+// TO BE COMPLETED...
 }
 
+// delete a city from the Database
 function deleteCity(req, res, next) {
-    // add city
-    cityService.addCity(params).then(function (data) {
-        res.status(200).json({
-            status: 'success',
-            data: data,
-            message: 'City deleted'
-        })
-    }).catch(function (err) {
-        return next(err);
-    })
+// TO BE COMPLETED...
 }
 
 module.exports = {

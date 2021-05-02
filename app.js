@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
-//require('dotenv').config();
 
 const app = express();
 
@@ -19,16 +18,12 @@ const forecast_routing = require('./routes/forecast.route');
 app.use('/city', city_routing);
 app.use('/forecast', forecast_routing);
 
-//const database = require('./controllers/database');
-//const client = database.db;
-
 let allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Headers', "*");
   next();
 }
 app.use(allowCrossDomain);
-
 
 let port = process.env.PORT || 1234;
 

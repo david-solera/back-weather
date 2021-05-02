@@ -1,6 +1,7 @@
 const forecast = require("../business/forecastService");
 const forecastService = forecast.forecastService;
 
+// get week forecast for a provided city
 function getWeekForecast(req, res, next) {
     // get params
     const city = req.body.city;
@@ -17,6 +18,7 @@ function getWeekForecast(req, res, next) {
     })
 }
 
+// get day forecast for a provided city
 function getDayForecast(req, res, next) {
     // get params
     const city = req.body.city;
@@ -33,6 +35,7 @@ function getDayForecast(req, res, next) {
     })
 }
 
+// get current weather for a provided city
 function getCurrentWeather(req, res, next) {
     // get params
     const city = req.body.city;

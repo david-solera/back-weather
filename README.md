@@ -3,42 +3,42 @@
 This is a NodeJS project.
 It wil provide a REST API to get info about the Weaher forecast.
 
-## Available Scripts
+Installation
+- Install dependencies: npm i
+- Run: npm start
 
-In the project directory, you can run:
+Currently deployed on Heroku platform, available in https://back-weather.herokuapp.com/
 
-### `npm start`
+The following REST API are available:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**city/list**: List of cities available in teh system (GET)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**city/detail/:name**: Detail of a specified city (GET)
 
-### `npm test`
+**city/locate**: Provide Geolocalization details of a specified city (POST)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**city/add**: Add a city specified to the system (provide city name an country code in body) (POST)
 
-### `npm run build`
+**forecast/week**: Gets the weather forecast for next week for a provided city (POST)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**forecast/day**: Gets the weather forecast for current day (next 48 hours) for a provided city (POST)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**forecast/current**: Gets the current weather for a provided city (POST)
 
 
+**ARQUITECTURE**
 
+- NodeJS Application.
+- Once one of the api urls are called, this main sequence is performed: Route -> Controller -> Service (Business, Database, Backend)
+- Different modules to separate logic, business and responsabilities
+- Use of Open Weather public API (Free Subscription) to get Citi locatin and weather forecast information
+- PostgreSQL database hosted in Heroku platform to store persistent application data
+- Use of Sequelize library to access DB
+
+**TO BE IMPROVED**
+- Complete city api with 'update' and 'delete' operations
+- Use Configuration for environment variables, for instance database settings (Not done due to problems deploying to Heraku)
+- Explore a non-relational DB
+- Include more data in API responses.
+- ...
+ 
