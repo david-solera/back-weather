@@ -33,16 +33,16 @@ function getDayForecast(req, res, next) {
     })
 }
 
-function getCurrentForecast(req, res, next) {
-    // get params (Mocked by the moment -- get from request!!!)
-    const city = 'Zaragoza'
+function getCurrentWeather(req, res, next) {
+    // get params
+    const city = req.body.city;
 
     // get current forecast 
-    forecastService.getCurrentForecast(city).then(function (data) {
+    forecastService.getCurrentWeather(city).then(function (data) {
         res.status(200).json({
             status: 'success',
             data: data,
-            message: 'Current Forecast retrieved'
+            message: 'Current Weather retrieved'
         })
     }).catch(function (err) {
         return next(err);
@@ -52,5 +52,5 @@ function getCurrentForecast(req, res, next) {
 module.exports = {
     getWeekForecast: getWeekForecast,
     getDayForecast: getDayForecast,
-    getCurrentForecast: getCurrentForecast    
+    getCurrentWeather: getCurrentWeather    
 };

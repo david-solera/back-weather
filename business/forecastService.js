@@ -10,6 +10,7 @@ const forecastService = {};
 // urls for Weather REST API
 const weeklyURL = "https://api.openweathermap.org/data/2.5/onecall?units=metric&appid=006a2717118faae82b83b91cc87e5e69&exclude=hourly,minutely&lang=es";
 const dailyURL = "https://api.openweathermap.org/data/2.5/onecall?units=metric&appid=006a2717118faae82b83b91cc87e5e69&exclude=daily,minutely&lang=es";
+const currentURL = "https://api.openweathermap.org/data/2.5/onecall?units=metric&appid=006a2717118faae82b83b91cc87e5e69&exclude=daily,hourly,minutely&lang=es";
 
 // gets forecast for next week
 forecastService.getWeekForecast =  async function (cityName) {
@@ -58,6 +59,31 @@ forecastService.getDayForecast =  async function (cityName) {
       });
     } catch (err) {
       console.log("Error getting weekly Forecast: " + err);
+      reject(err);
+    }
+  });
+}
+
+// gets current Weather for ciy
+forecastService.getCurrentWeather =  async function (cityName) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // get city record
+      const city = await cityService.getCity(cityName);
+
+      // add City coordinates to URL
+      const restURL = currentURL + "&lat=" + city.lat + "&lon=" + city.lon;
+      console.log("URL: " + restURL);
+
+      // get the forecast (Call External Weather API)
+      restService.doGet(restURL).then(res => {
+        // handle the raw response from API
+        const dayForecast = handleCurrentWeatherData(res);
+        // return handled response
+        resolve(dayForecast);
+      });
+    } catch (err) {
+      console.log("Error getting current Weather: " + err);
       reject(err);
     }
   });
@@ -134,6 +160,40 @@ function handleHourForecastData(hourForecast) {
   }
 
   return hourItem;
+}
+
+// handles the result from the open weather API and creates a useful data structure
+// get current weather information
+function handleCurrentWeatherData(response) {
+
+  // get the current Weather and add an day item in the result object
+  const weatherInfo = JSON.parse(response.body);
+
+  const currentDate = new Date(weatherInfo.current.dt * 1000);
+  let weatherItem = {
+    date: currentDate,
+    time: getTime(currentDate),
+    summary: weatherInfo.current.weather[0].main,
+    temp: weatherInfo.current.temp,
+    humidity: weatherInfo.current.humidity,
+    wind: weatherInfo.current.wind_speed,
+  }
+
+  return weatherItem;
+}
+
+function getTime(date) {
+   // Hours part from the timestamp
+   var hours = date.getHours();
+   // Minutes part from the timestamp
+   var minutes = "0" + date.getMinutes();
+   // Seconds part from the timestamp
+   var seconds = "0" + date.getSeconds();
+ 
+   // Will display time in 10:30:23 format
+   var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+   return formattedTime; 
 }
 
 module.exports = { forecastService };
