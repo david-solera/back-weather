@@ -3,7 +3,7 @@
 This is a NodeJS project.
 It wil provide a REST API to get info about the Weaher forecast.
 
-Installation
+**Installation**
 - Install dependencies: npm i
 - Run: npm start
 
@@ -40,5 +40,6 @@ The following REST API are available:
 - Use Configuration for environment variables, for instance database settings (Not done due to problems deploying to Heraku)
 - Explore a non-relational DB
 - Include more data in API responses.
+- More detailed documentation
 - ...
  
