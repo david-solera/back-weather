@@ -41,5 +41,6 @@ The following REST API are available:
 - Explore a non-relational DB
 - Include more data in API responses.
 - More detailed documentation
+- Unit Testing
 - ...
  
